@@ -1,6 +1,6 @@
 \documentclass{math-deane}
 
-\title{Calculus Concepts}
+\title{Fundamental Concepts in Calculus}
 \author{Deane Yang}
 \parindent 0pt
 \parskip 10pt
@@ -25,16 +25,16 @@ Some simple examples are the following:
 \begin{itemize}
 \item A function, where, no matter what the input is, the output is $3$. This is called a constant function.
 \item A function, where the output is always the same as the input unchanged.
-\item A function, where the output is twice the input
-\item A function, where the output is the input minus $2$.
 \item A function, where the output is the input squared.
 \end{itemize}
 
-Often, the description of a function is written as:
-\[ f(x) = \text{ formula in }x. \]
-In English, this line means: {\em Define a function named $f$, where given any input, which we'll call $x$, the output is calculated using the formula.}
+In symbols, if the function is named $f$ and the input is named $x$, then the output is written as $f(x)$.
 
-Although we usually use $f$ as the name of a function and $x$ as the name of a input, other letters and symbols can be used just as well. The functions above can be described symbolically as follows:
+In general, if you are handed a function named $\Xi$ and a number named $\Diamond$, then you should always think of $\Xi$ as a process (and not a number or a set of numbers), where if you feed it $\Diamond$ as an input, then the process will produce an output, which is written abstractly as $\Xi(\Diamond)$.
+
+When you want to explain details of a function $\Xi$, you usually write this as
+\[ \Xi(\Diamond) = \text{ formula involving }\Diamond. \]
+The functions above can therefore be described symbolically as follows:
 
 \begin{itemize}
 \item $h(z) = 3$: The function $h$, given any input $z$, produces the output $3$.
@@ -51,6 +51,8 @@ is the same function as the function $h$, defined by
 h(y) &= y^2-1,
 \end{align*}
 because, given any input, $h$ will produce the same output as $f$.
+
+Once you have defined a function, say the function $q$ above, and want to feed it a specific input, say $\text{\em blah}$, then the corresponding output is written as $q(\text{\em blah})$. For this particular function $q(\text{\em blah})$ is equal to $\text{\em blah}$ squared.
 
 \section{Domain of a function}
 
@@ -109,7 +111,7 @@ Output change & Sensitivity \\ \hline \hline
 $1$ & $1$ & $1+c$ & $(1+c)^2$ & $c$ & $2c+c^2$ & $2+c$ \\ \hline
 \end{tabular}
 
-If the change $c$ is made smaller and smaller, the sensitivity gets closer and closer to the value $2$. We call this limiting sensitivity the {\em derivative of $f$ for the input $1$} and write it as $f'(1)$
+If the change $c$ is made smaller and smaller, the sensitivity gets closer and closer to the value $2$. We call this limiting sensitivity the {\em derivative of $f$ for the input $1$} and write it as $f'(1)$.
 
 More generally, we can do this for any starting input $x$:
 
@@ -119,13 +121,14 @@ Old input&Old output&New input& New output & Input change &
 Output change & Sensitivity \\ \hline \hline
 $x$ & $x$ & $x+c$ & $(x+c)^2$ & $c$ & $2xc+c^2$ & $2x+c$ \\ \hline
 \end{tabular}
+
 Again, by letting $c \rightarrow 0$, we see that the sensitivity converges to $2x$. Therefore, the derivative of $f$ for the input $x$ is $2x$. We write this as
 \[ f'(x) = 2x. \]
 Notice that the derivative $f'$ is itself also a function.
 
 So what does this mean in practice? It means that for the function $f(x) = x^2$, if we start with an input value of, say, $3$ and change the input a little, say $0.04$, then the output will change by about twice the input, namely $0.08$. Since $f(3) = 9$, this means that $f(3.04)$ is approximately $9 + 0.08 = 9.08$.
 
-Notice that since
+More generally, since
 \[
 \text{Sensitivity} \simeq \frac{\text{Output change}}{\text{Input change}},
 \]
@@ -134,7 +137,7 @@ we can estimate the new output by
 \text{New output} &= \text{Old output} + \text{Output change}\\
 &= \text{Old output} + (\text{Sensitivity})(\text{Input change}).
 \end{align*}
-We say this using symbols as follows: Suppose for a starting input value $s$, we know the value of the function $f(s)$ and its derivative $f'(s)$. Then for another input value $t$ close to $s$, we can estimate the output $f(t)$ by
+We say this using symbols as follows: Suppose for a function $f$ and a starting input $s$, we know the output $f(s)$, and the derivative $f'(s)$. Then for another input value $t$ close to $s$, we can estimate the output $f(t)$ by
 \[
 f(t) \simeq f(s) + f'(s)(t-s).
 \]
@@ -163,16 +166,15 @@ This is too crude, but we could redo the calculation but using smaller increment
 
 This process can be carried out using the derivative of any function $f$ and the value of $f$ for a single chosen input. It allows us to reconstruct the value of $f$ from this information for any other input.
 
-The concept of the definite integral of a function $f'$ from $s$ to $t$, which is written
+In words, the difference between the outputs for two inputs can be estimated by summing a sequence of output changes due to a sequence of small input changes. Each output change due to a small input change can be estimated using the derivative (sensitivity) of the function. By making the small input changes approach zero, the estimate converges to a limiting value that is equal to the exact output change.
+
+This process and its result is all encoded in the concept of the definite integral of a function $f'$ from $s$ to $t$, which is written
 \[ \int_s^t f'(x)\,dx, \]
 and the Fundamental Theorem of Calculus which says
-\[ f(t) - f(s) = \int_s^t f'(x)\,dx \]
-encodes this process and its result.
+\[ f(t) - f(s) = \int_s^t f'(x)\,dx. \]
 
-In words, the difference between the outputs for two inputs can be estimated by summing a sequence of output changes due to a sequence of small input changes. Each output change due to a small input change can be estimated using the derivative (sensitivity) of the function.
-
-Notice that this process allows us to reconstruct the entire function $f$ from its derivative and its value for a single input. Suppose we know the value of $f(0)$ and the function $f'(t)$ for all inputs $t$. We can then reconstruct the value of $f(t)$ using the formula
-\[
+Notice that this process allows us to reconstruct the entire function $f$ from knowing only its value for a single input and its derivative. If, for example, we know the value of $f(0)$ and the function $f'(t)$ for all inputs $t$, we can reconstruct the value of $f(t)$, for any input $t$, using the formula
+\[described above 
 f(t) = f(0) + \int_0^t f(x)\,dx.
 \]
 
@@ -184,6 +186,8 @@ mean? In practical situations, this integral does not always have any useful mea
 \[
 \int_s^t f(x)\,dx = g(t) - g(s).
 \]
+
+It is worth noting that, in most real life uses of calculus, the estimation process as described above, as well as more sophisticated versions of it, is more important than the mathematically precise definition of an integral.
 
 \section{Position and Velocity}
 
