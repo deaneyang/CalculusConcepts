@@ -2,6 +2,8 @@
 
 \title{Calculus Concepts}
 \author{Deane Yang}
+\parindent 0pt
+\parskip 10pt
 
 \begin{document}
 \maketitle
@@ -64,5 +66,49 @@ Since the concept of continuity is never used directly, we don't say anything mo
 
 \section{Derivative of a function}
 
+It is natural to ask how sensitive the output of a function is to a change in the input. So we can define the sensitivity of a function to be the ratio
+\[
+\text{Sensitivity of }f \simeq \frac{\text{Resulting change in output}}{\text{Change in input}}
+\]
+For simple functions, this idea makes sense. For example, if the function is a constant function, where the output is always the same no matter what the input is, the sensitivity is clearly zero. If the output is always equal to the input, then the sensitivity is $1$. If the output is always equal to twice the input, the sensitivity is $2$.
+
+For more complicated functions, the concept of sensitivity becomes more complicated and leads to the concept of the derivative of a function. The two main complications are the following:
+\begin{itemize}
+\item The sensitivity might depend on what input you start with
+\item The sensitivity might depend on how much you change the input
+\end{itemize}
+
+An example is the function $f(x) = x^2$. 
+
+\vspace{0.1in}
+
+Same starting input, different input changes:\\
+\begin{tabular}{|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{1in}|p{1in}|}
+\hline
+Old input&Old output&New input& New output & Change in input &
+Change in output & Sensitivity \\ \hline
+1 & 1 & 1.1 & 1.21 & 0.1 & 0.21 & 2.1\\
+1 & 1 & 1.01 & 1.0201 & 0.01 & 0.0201 & 2.01\\ \hline
+\end{tabular}
+
+Different starting inputs, same input changes:\\
+\begin{tabular}{|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{1in}|p{1in}|}
+\hline
+Old input&Old output&New input& New output & Change in input &
+Change in output & Sensitivity \\ \hline
+1 & 1 & 1.1 & 1.21 & 0.1 & 0.21 & 2.1\\
+2 & 4 & 2.1 & 4.41 & 0.1 & 0.41 & 4.1 \\ \hline
+\end{tabular}
+
+The deep insight is that if we stay with the same starting input but calculate the sensitivity for smaller and smaller input changes, the sensitivity moves closer and closer to a single fixed value. We say that the sensitivity converges to a limiting value.
+
+This can be illustrated with the same function $f(x)=x^2$. If we use $1$ as the starting input and call the input change $c$, then we get the following:
+
+\begin{tabular}{|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{1in}|p{1in}|}
+\hline
+Old input&Old output&New input& New output & Change in input &
+Change in output & Sensitivity \\ \hline
+$1$ & $1$ & $1+c$ & $(1+c)^2$ & c & $2c+c^2$ & $2+c$ \\ \hline
+\end{tabular}
 
 \end{document}
