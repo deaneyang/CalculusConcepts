@@ -1,0 +1,68 @@
+\documentclass{math-deane}
+
+\title{Calculus Concepts}
+\author{Deane Yang}
+
+\begin{document}
+\maketitle
+
+\section{Real number}
+
+A real number is assumed to be any number that can be written as a decimal with a finite number of digits to the left of the decimal point and possibly an infinite number to the right of the decimal.
+
+But with the following caveat: If the tail of a decimal is an infinite sequence of $9$'s, then it is equal to the decimal, where the $9$'s are deleted and the last digit to the left of the $9$'s is incremented by $1$. For example,
+\[ 1.99999\dots = 2 \]
+
+We will assume that we know how to do arithmetic (addition, subtraction, multiplication, division) with real numbers, even though it is tricky if there are an infinite number of digits.
+
+\section{Function}
+
+A function is a systematic process (the technical term is algorithm) for taking one or more inputs and generating one or more outputs. The functions studied in single variable calculus all take a single input, a real number, and produces a single output, also a real number.
+
+Some simple examples are the following:
+\begin{itemize}
+\item A function, where, no matter what the input is, the output is $3$. This is called a constant function.
+\item A function, where the output is always the same as the input unchanged.
+\item A function, where the output is twice the input
+\item A function, where the output is the input minus $2$.
+\item A function, where the output is the input squared.
+\end{itemize}
+
+Often, the description of a function is written as:
+\[ f(x) = \text{ formula in }x. \]
+In English, this line means: {\em Define a function named $f$, where given any input, which we'll call $x$, the output is calculated using the formula.}
+
+Although we usually use $f$ as the name of a function and $x$ as the name of a input, other letters and symbols can be used just as well. The functions above can be described symbolically as follows:
+
+\begin{itemize}
+\item $h(z) = 3$: The function $h$, given any input $z$, produces the output $3$.
+\item $p(u) = u$: The function $p$, given any input $u$, produces the output $u$
+\item $q(c) = c^2$: The function $q$, given any input $c$, produces the output $c^2$.
+\end{itemize}
+
+Note that the function $f$, defined by
+\begin{align*}
+f(t) &= t^2 - 1
+\end{align*}
+is the same function as the function $h$, defined by
+\begin{align*}
+h(y) &= y^2-1,
+\end{align*}
+because, given any input, $h$ will produce the same output as $f$.
+
+\section{Domain of a function}
+
+Often we want to restrict which real numbers are allowed to be an input to a particular function. The set of permissible inputs to a function $f$ is called its domain. Sometimes, the domain is restricted, because the formula used to define $f$ fails for some input values. Sometimes, however, we impose a restriction on the domain, even if the definition of the function is valid on a larger domain.
+
+\section{Continuity of a function}
+
+We can think of a function as a knob and a needle on a dial. The position of the knob represents the input, and the position of the needle represents the output. When the knob is adjusted, the needle need not move in the same direction as the knob. It also need not even move at all.
+
+The rough idea of what it means for a function to be continuous is that, when we turn the knob, the needle never instantaneously jumps to a new position. This, however, turns out to be very tricky to describe in a precise way. We need to somehow distinguish between a needle instantaneously jumping to a new position, without actually traveling through the positions between the old and new position (this is actually impossible physically), and a needle moving from the old position to a new position very quickly.
+
+Since the concept of continuity is never used directly, we don't say anything more about it.
+
+\section{Derivative of a function}
+
+
+\end{document}

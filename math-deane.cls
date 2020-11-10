@@ -1,0 +1,64 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{math-deane}
+\LoadClass[12pt]{amsart}
+\RequirePackage[margin=1in]{geometry}
+\RequirePackage{amssymb}
+\RequirePackage{comment} 
+\renewcommand{\datename}{\textit{Date}:}
+\DeclareRobustCommand{\Z}{\mathbb{Z}}
+\DeclareRobustCommand{\R}{\mathbb{R}}
+\DeclareRobustCommand{\C}{\mathbb{C}}
+\DeclareRobustCommand{\N}{\mathbb{N}}
+\DeclareRobustCommand{\psihat}{\widehat{\psi}}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}[lemma]{Theorem}
+\newtheorem{corollary}[lemma]{Corollary}
+\newtheorem{proposition}[lemma]{Proposition}
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{remark}{Remark}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+\usepackage[autostyle]{csquotes}
+\usepackage[
+    backend=bibtex,
+    style=numeric,
+    giveninits=true,
+    maxbibnames=99,
+    url=false, 
+    doi=true]{biblatex}
+\renewbibmacro{in:}{}
+\DeclareFieldFormat
+  [unpublished]
+  {title}{\textit{#1}}
+\DeclareFieldFormat
+  [book]
+  {title}{\textit{#1}}
+\DeclareFieldFormat
+  [inbook]
+  {booktitle}{#1}
+\DeclareFieldFormat
+  [inbook]
+  {title}{\textit{#1}}
+\DeclareFieldFormat
+  [incollection]
+  {booktitle}{#1}
+\DeclareFieldFormat
+  [incollection]
+  {title}{\textit{#1}}
+\DeclareFieldFormat
+  [inproceedings]
+  {booktitle}{#1}
+\DeclareFieldFormat
+  [inproceedings]
+  {title}{\textit{#1}}
+\DeclareFieldFormat
+  [article]
+  {title}{\textit{#1}}
+\DeclareFieldFormat
+  [article]
+  {journaltitle}{#1}
+\AtEveryBibitem{\clearfield{issn}}
+\AtEveryCitekey{\clearfield{issn}}
+\addbibresource{references}
