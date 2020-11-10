@@ -159,7 +159,9 @@ f(0.5) &\simeq f(0.25) + f'(0.25)(0.5-0.25) = 0.5(0.25) = 0.125\\
 f(0.75) &\simeq f(0.5) + f'(0.5)(0.75-0.5) = 0.125 + 1(0.25) = 0.375\\
 f(1)) &\simeq f(0.75) + f'(0.75)(1-0.75) = 0.375 + 1.5(0.25) = 0.75
 \end{align*}
-This is too crude, but we could redo the calculation but using smaller incremental input changes. If we were to do this, we would find that the estimates for $f(1)$ get closer and closer to a specific value, namely $1$.
+This is too crude, but we could redo the calculation but using smaller incremental input changes. If we were to do this, we would find that the estimates for $f(1)$ get closer and closer to a specific value. Here, it would turn out to be the value $1$.
+
+This process can be carried out using the derivative of any function $f$ and the value of $f$ for a single chosen input. It allows us to reconstruct the value of $f$ from this information for any other input.
 
 The concept of the definite integral of a function $f'$ from $s$ to $t$, which is written
 \[ \int_s^t f'(x)\,dx, \]
@@ -182,4 +184,18 @@ mean? In practical situations, this integral does not always have any useful mea
 \[
 \int_s^t f(x)\,dx = g(t) - g(s).
 \]
+
+\section{Position and Velocity}
+
+Suppose an object is moving back and forth along a straight line, and we're keeping track of its position $f(t)$ at time $t$. Given a start time $t_0$ and end time $t_1$, the average velocity during that time interval is
+\[
+\text{Average velocity} = \frac{\text{Change in position}}{\text{Change in time}}.
+\]
+This is what we called the sensitivity of $f$. If we make the time interval shorter and shorter, the corresponding average velocities (sensitivities) converge to what we call the instantaneous velocity (derivative). In other words, $f' = v$.
+
+If we know the instantaneous velocity of the object at every time during some time interval and the starting position of the object, then we can estimate the ending position by dividing the time interval into a sequence of small time intervals, estimating the change in position during each smaller interval using the velocity, and adding up the position changes. Taking the limit, this means that, if $v(t)$ is the instantaneous velocity at time $t$, 
+\[
+f(t_1) - f(t_0) = \int_{t_0}^{t_1} v(t)\,dt
+\]
+
 \end{document}
