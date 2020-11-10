@@ -80,23 +80,21 @@ For more complicated functions, the concept of sensitivity becomes more complica
 
 An example is the function $f(x) = x^2$. 
 
-\vspace{0.1in}
-
-Same starting input, different input changes:\\
-\begin{tabular}{|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{1in}|p{1in}|}
+{\em Same starting input, different input changes:}\\
+\begin{tabular}{|p{0.5in}|p{0.5in}|p{0.5in}|p{0.5in}|p{0.5in}|p{0.5in}|p{0.75in}|}
 \hline
-Old input&Old output&New input& New output & Change in input &
-Change in output & Sensitivity \\ \hline
-1 & 1 & 1.1 & 1.21 & 0.1 & 0.21 & 2.1\\
+Old input&Old output&New input& New output & Input change &
+Output change & Sensitivity \\ \hline\hline
+1 & 1 & 1.1 & 1.21 & 0.1 & 0.21 & 2.1\\ \hline
 1 & 1 & 1.01 & 1.0201 & 0.01 & 0.0201 & 2.01\\ \hline
 \end{tabular}
 
-Different starting inputs, same input changes:\\
-\begin{tabular}{|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{1in}|p{1in}|}
+{\em Different starting inputs, same input changes:}\\
+\begin{tabular}{|p{0.5in}|p{0.5in}|p{0.5in}|p{0.5in}|p{0.5in}|p{1in}|p{1in}|}
 \hline
-Old input&Old output&New input& New output & Change in input &
-Change in output & Sensitivity \\ \hline
-1 & 1 & 1.1 & 1.21 & 0.1 & 0.21 & 2.1\\
+Old input&Old output&New input& New output & Input change &
+Output change & Sensitivity \\ \hline \hline
+1 & 1 & 1.1 & 1.21 & 0.1 & 0.21 & 2.1\\ \hline
 2 & 4 & 2.1 & 4.41 & 0.1 & 0.41 & 4.1 \\ \hline
 \end{tabular}
 
@@ -104,11 +102,84 @@ The deep insight is that if we stay with the same starting input but calculate t
 
 This can be illustrated with the same function $f(x)=x^2$. If we use $1$ as the starting input and call the input change $c$, then we get the following:
 
-\begin{tabular}{|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{1in}|p{1in}|}
+\begin{tabular}{|p{0.5in}|p{0.5in}|p{0.5in}|p{0.5in}|p{0.5in}|p{1in}|p{1in}|}
 \hline
-Old input&Old output&New input& New output & Change in input &
-Change in output & Sensitivity \\ \hline
-$1$ & $1$ & $1+c$ & $(1+c)^2$ & c & $2c+c^2$ & $2+c$ \\ \hline
+Old input&Old output&New input& New output & Input change &
+Output change & Sensitivity \\ \hline \hline
+$1$ & $1$ & $1+c$ & $(1+c)^2$ & $c$ & $2c+c^2$ & $2+c$ \\ \hline
 \end{tabular}
 
+If the change $c$ is made smaller and smaller, the sensitivity gets closer and closer to the value $2$. We call this limiting sensitivity the {\em derivative of $f$ for the input $1$} and write it as $f'(1)$
+
+More generally, we can do this for any starting input $x$:
+
+\begin{tabular}{|p{0.5in}|p{0.5in}|p{0.5in}|p{0.5in}|p{0.5in}|p{1in}|p{1in}|}
+\hline
+Old input&Old output&New input& New output & Input change &
+Output change & Sensitivity \\ \hline \hline
+$x$ & $x$ & $x+c$ & $(x+c)^2$ & $c$ & $2xc+c^2$ & $2x+c$ \\ \hline
+\end{tabular}
+Again, by letting $c \rightarrow 0$, we see that the sensitivity converges to $2x$. Therefore, the derivative of $f$ for the input $x$ is $2x$. We write this as
+\[ f'(x) = 2x. \]
+Notice that the derivative $f'$ is itself also a function.
+
+So what does this mean in practice? It means that for the function $f(x) = x^2$, if we start with an input value of, say, $3$ and change the input a little, say $0.04$, then the output will change by about twice the input, namely $0.08$. Since $f(3) = 9$, this means that $f(3.04)$ is approximately $9 + 0.08 = 9.08$.
+
+Notice that since
+\[
+\text{Sensitivity} \simeq \frac{\text{Output change}}{\text{Input change}},
+\]
+we can estimate the new output by
+\begin{align*}
+\text{New output} &= \text{Old output} + \text{Output change}\\
+&= \text{Old output} + (\text{Sensitivity})(\text{Input change}).
+\end{align*}
+We say this using symbols as follows: Suppose for a starting input value $s$, we know the value of the function $f(s)$ and its derivative $f'(s)$. Then for another input value $t$ close to $s$, we can estimate the output $f(t)$ by
+\[
+f(t) \simeq f(s) + f'(s)(t-s).
+\]
+This is commonly known as the linear or tangent line approximation of $f$ near $s$.
+
+\section{Integral}
+
+The integral of a function is designed to reconstruct a function from its derivative. The principle is that if you know how sensitive a function is to small changes in input, then you can get good estimates of how the output changes for a large change in input.
+
+So suppose you know in advance the derivative $f'$ of a function $f$ but don't know $f$ itself, except at one specific input $s$. We now want to find a way to estimate the value of $f(t)$ for some other input $t$. Using the linear approximation, we know how to estimate $f(t)$, if $t$ is close to $s$. But what if $t$ is not close to $s$?
+
+The answer is quite simple: A big input change is just a sum of small input changes, so we can estimate the output change due to  the big input change by the sum of the corresponding output changes due to the small input changes.
+
+For example, suppose we have a function $f$, where we know that $f'(x) = 2x$ (for all $x$) and $f(0) = 0$, and we want to find $f(1)$. We can use the linear approximation to estimate, one at a time, the values of $f(0.25), f(0.5), f(0.75), f(1)$. In other words, we just use repeatedly the estimate
+\[
+\text{New output} \simeq \text{Old output} + (\text{Sensitivity})(\text{Input Change})
+\]
+This gives
+\begin{align*}
+f(0.25)	&\simeq f(0) + f'(0)(0.25-0) = 0\\
+f(0.5) &\simeq f(0.25) + f'(0.25)(0.5-0.25) = 0.5(0.25) = 0.125\\
+f(0.75) &\simeq f(0.5) + f'(0.5)(0.75-0.5) = 0.125 + 1(0.25) = 0.375\\
+f(1)) &\simeq f(0.75) + f'(0.75)(1-0.75) = 0.375 + 1.5(0.25) = 0.75
+\end{align*}
+This is too crude, but we could redo the calculation but using smaller incremental input changes. If we were to do this, we would find that the estimates for $f(1)$ get closer and closer to a specific value, namely $1$.
+
+The concept of the definite integral of a function $f'$ from $s$ to $t$, which is written
+\[ \int_s^t f'(x)\,dx, \]
+and the Fundamental Theorem of Calculus which says
+\[ f(t) - f(s) = \int_s^t f'(x)\,dx \]
+encodes this process and its result.
+
+In words, the difference between the outputs for two inputs can be estimated by summing a sequence of output changes due to a sequence of small input changes. Each output change due to a small input change can be estimated using the derivative (sensitivity) of the function.
+
+Notice that this process allows us to reconstruct the entire function $f$ from its derivative and its value for a single input. Suppose we know the value of $f(0)$ and the function $f'(t)$ for all inputs $t$. We can then reconstruct the value of $f(t)$ using the formula
+\[
+f(t) = f(0) + \int_0^t f(x)\,dx.
+\]
+
+What happens if we integrate a function $f$ itself? The process we applied above to the function $f'$ can be applied to any function, even if the function is not known to be the derivative of some other function. What does
+\[
+\int_s^t f(x)\,dx
+\]
+mean? In practical situations, this integral does not always have any useful meaning. Mathematically, it allows us to construct a new function whose derivative is $f$. In other words, any function $f$ is in fact the derivative of some other function $g$. We say that $g$ is the antiderivative of $f$. The Fundamental Theorem of Calculus then says that
+\[
+\int_s^t f(x)\,dx = g(t) - g(s).
+\]
 \end{document}
