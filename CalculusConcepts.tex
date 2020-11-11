@@ -52,7 +52,7 @@ h(y) &= y^2-1,
 \end{align*}
 because, given any input, $h$ will produce the same output as $f$.
 
-Once you have defined a function, say the function $q$ above, and want to feed it a specific input, say $\text{\em blah}$, then the corresponding output is written as $q(\text{\em blah})$. For this particular function $q(\text{\em blah})$ is equal to $\text{\em blah}$ squared.
+Once you have defined a function, say the function $q$ above, and want to feed it a specific input, say $\text{\em blah}$, then the corresponding output is written as $q(\text{\em blah})$. For this particular function, $q(\text{\em blah})$ is equal to number consisting of $\text{\em blah}$ squared. And $q(c+2) = (c+2)^2$. If a function $f$ is defined to be $f(x) = x - 1$, then $f(x+2) = (x+2) - 1 = x + 1$.
 
 \section{Domain of a function}
 
@@ -64,7 +64,7 @@ We can think of a function as a knob and a needle on a dial. The position of the
 
 The rough idea of what it means for a function to be continuous is that, when we turn the knob, the needle never instantaneously jumps to a new position. This, however, turns out to be very tricky to describe in a precise way. We need to somehow distinguish between a needle instantaneously jumping to a new position, without actually traveling through the positions between the old and new position (this is actually impossible physically), and a needle moving from the old position to a new position very quickly.
 
-Since the concept of continuity is never used directly, we don't say anything more about it.
+Continuity is a necessary but not sufficient assumption for the discussion below. We will avoid using it directly but restricting our attention to functions that are continuous.
 
 \section{Derivative of a function}
 
@@ -135,23 +135,23 @@ More generally, since
 we can estimate the new output by
 \begin{align*}
 \text{New output} &= \text{Old output} + \text{Output change}\\
-&= \text{Old output} + (\text{Sensitivity})(\text{Input change}).
+&\simeq \text{Old output} + (\text{Sensitivity})(\text{Input change}).
 \end{align*}
 We say this using symbols as follows: Suppose for a function $f$ and a starting input $s$, we know the output $f(s)$, and the derivative $f'(s)$. Then for another input value $t$ close to $s$, we can estimate the output $f(t)$ by
-\[
+\begin{equation}\label{linear}
 f(t) \simeq f(s) + f'(s)(t-s).
-\]
+\end{equation}
 This is commonly known as the linear or tangent line approximation of $f$ near $s$.
 
 \section{Integral}
 
-The integral of a function is designed to reconstruct a function from its derivative. The principle is that if you know how sensitive a function is to small changes in input, then you can get good estimates of how the output changes for a large change in input.
+The integral of a function is designed to reconstruct a function from its derivative. The principle is that if you know how sensitive the output of a function is to small changes of the input, then you can get good estimates of how the output changes for a large change in input.
 
-So suppose you know in advance the derivative $f'$ of a function $f$ but don't know $f$ itself, except at one specific input $s$. We now want to find a way to estimate the value of $f(t)$ for some other input $t$. Using the linear approximation, we know how to estimate $f(t)$, if $t$ is close to $s$. But what if $t$ is not close to $s$?
+So suppose you know in advance the derivative $f'$ of a function $f$ but don't know $f$ itself, except its value for one specific input $s$. We now want to find a way to estimate the value of $f(t)$ for some other input $t$. Using the linear approximation \eqref{linear}, we know how to estimate $f(t)$, if $t$ is close to $s$. But what if $t$ is not close to $s$?
 
-The answer is quite simple: A big input change is just a sum of small input changes, so we can estimate the output change due to  the big input change by the sum of the corresponding output changes due to the small input changes.
+The answer is quite simple: A big input change is just a sum of small input changes, so we can estimate the output change due to  the big input change by adding up the output changes due to the small input changes.
 
-For example, suppose we have a function $f$, where we know that $f'(x) = 2x$ (for all $x$) and $f(0) = 0$, and we want to find $f(1)$. We can use the linear approximation to estimate, one at a time, the values of $f(0.25), f(0.5), f(0.75), f(1)$. In other words, we just use repeatedly the estimate
+For example, suppose we have a function $f$, where we know that $f'(x) = 2x$ (for all $x$) and $f(0) = 0$, and we want to find $f(1)$. We can use the linear approximation \eqref{linear} to estimate, one at a time, the values of $f(0.25), f(0.5), f(0.75), f(1)$. In other words, we just use repeatedly the estimate
 \[
 \text{New output} \simeq \text{Old output} + (\text{Sensitivity})(\text{Input Change})
 \]
@@ -162,44 +162,52 @@ f(0.5) &\simeq f(0.25) + f'(0.25)(0.5-0.25) = 0.5(0.25) = 0.125\\
 f(0.75) &\simeq f(0.5) + f'(0.5)(0.75-0.5) = 0.125 + 1(0.25) = 0.375\\
 f(1)) &\simeq f(0.75) + f'(0.75)(1-0.75) = 0.375 + 1.5(0.25) = 0.75
 \end{align*}
-This is too crude, but we could redo the calculation but using smaller incremental input changes. If we were to do this, we would find that the estimates for $f(1)$ get closer and closer to a specific value. Here, it would turn out to be the value $1$.
+This is too crude, but we could redo the calculation but using smaller incremental input changes. If we were to do this, we would find that the estimates for $f(1)$ get closer and closer to a specific value. For this specific example, it would turn out to be the value $1$.
 
-This process can be carried out using the derivative of any function $f$ and the value of $f$ for a single chosen input. It allows us to reconstruct the value of $f$ from this information for any other input.
+This process can be carried out using the derivative of any (not too weird) function $f$. It allows us to reconstruct the function $f$ knowing only its value for one input and its derivative for all inputs.
 
 In words, the difference between the outputs for two inputs can be estimated by summing a sequence of output changes due to a sequence of small input changes. Each output change due to a small input change can be estimated using the derivative (sensitivity) of the function. By making the small input changes approach zero, the estimate converges to a limiting value that is equal to the exact output change.
 
-This process and its result is all encoded in the concept of the definite integral of a function $f'$ from $s$ to $t$, which is written
-\[ \int_s^t f'(x)\,dx, \]
-and the Fundamental Theorem of Calculus which says
+This process of estimating the output change using $f'$ and taking a limit is encoded in the concept of the definite integral of $f'$ from $s$ to $t$, which is written
+\[ \int_s^t f'(x)\,dx. \]
+The fact that the limiting value is the exact value of the output change is known as the Fundamental Theorem of Calculus, which says
 \[ f(t) - f(s) = \int_s^t f'(x)\,dx. \]
 
-Notice that this process allows us to reconstruct the entire function $f$ from knowing only its value for a single input and its derivative. If, for example, we know the value of $f(0)$ and the function $f'(t)$ for all inputs $t$, we can reconstruct the value of $f(t)$, for any input $t$, using the formula
-\[described above 
-f(t) = f(0) + \int_0^t f(x)\,dx.
+This process allows us to reconstruct the entire function $f$ from knowing only its value for a single input and its derivative. If, for example, we know the value of $f$ for only a single input $t_0$ and but its derivative $f'(t)$ for all inputs $t$, we can reconstruct, for any input $t$, the value of $f(t)$ using the Fundamental Theorem of Calculus,
+\[
+f(t) = f(t_0) + \int_{t_0}^t f'(x)\,dx.
 \]
 
-What happens if we integrate a function $f$ itself? The process we applied above to the function $f'$ can be applied to any function, even if the function is not known to be the derivative of some other function. What does
+What happens if we integrate the function $f$ itself? The process we applied above to the function $f'$ can be applied to any function, even if the function is not known to be the derivative of some other function. What does
 \[
 \int_s^t f(x)\,dx
 \]
-mean? In practical situations, this integral does not always have any useful meaning. Mathematically, it allows us to construct a new function whose derivative is $f$. In other words, any function $f$ is in fact the derivative of some other function $g$. We say that $g$ is the antiderivative of $f$. The Fundamental Theorem of Calculus then says that
-\[
-\int_s^t f(x)\,dx = g(t) - g(s).
-\]
+mean? It means just do to $f$ whatever we did to $f'$ above. In practical situations, this integral does not always have any useful meaning. Mathematically, it allows us to construct a new function whose derivative is $f$. In other words, any function $f$ is in fact the derivative of some other function $g$. We say that $g$ is the antiderivative of $f$.
 
-It is worth noting that, in most real life uses of calculus, the estimation process as described above, as well as more sophisticated versions of it, is more important than the mathematically precise definition of an integral.
+It is worth noting that, in most real life uses of calculus, the estimation process as described above, as well as more sophisticated versions of it, is more important than the mathematically precise definition and calculations of an integral.
 
 \section{Position and Velocity}
 
-Suppose an object is moving back and forth along a straight line, and we're keeping track of its position $f(t)$ at time $t$. Given a start time $t_0$ and end time $t_1$, the average velocity during that time interval is
-\[
-\text{Average velocity} = \frac{\text{Change in position}}{\text{Change in time}}.
-\]
-This is what we called the sensitivity of $f$. If we make the time interval shorter and shorter, the corresponding average velocities (sensitivities) converge to what we call the instantaneous velocity (derivative). In other words, $f' = v$.
+Suppose an object is moving back and forth along a straight line, and we're keeping track of its position $p(t)$ at time $t$. We can estimate the velocity of the object at any time by
+\begin{equation}\label{average-velocity}
+  \text{Velocity} \simeq \frac{\text{Change in position}}{\text{Time elapsed}}.
+\end{equation}
+This, however, is the same as what we earlier called the sensitivity of $p$. If we make the time interval shorter and shorter, the corresponding velocities (i.e., sensitivities) converge to what we call the instantaneous velocity of the object (i.e., the derivative of $p$). In other words, if $v$ is the instantaneous velocity function, then $v = p'$.
 
-If we know the instantaneous velocity of the object at every time during some time interval and the starting position of the object, then we can estimate the ending position by dividing the time interval into a sequence of small time intervals, estimating the change in position during each smaller interval using the velocity, and adding up the position changes. Taking the limit, this means that, if $v(t)$ is the instantaneous velocity at time $t$, 
+This in turn means that if we know the velocity, then we can estimate the change in the object's position during a short time interval by
+\begin{equation}\label{position-change}
+  \text{Change in position} \simeq (\text{Velocity})(\text{Time elapsed}).
+\end{equation}
+
+If we know the instantaneous velocity of the object at every time during some time interval and the position of the object at the start of the time interval, then we can estimate the position of the object at the end of the time interval as follows:
+\begin{enumerate}
+\item Divide the time interval into a sequence of small subintervals.
+\item Estimate the net change in position during each small subinterval using equation \eqref{position-change}.
+\item Add up all the estimated position changes for the subintervals to get an estimated position change for the full time interval.
+\end{enumerate}
+If we then redo this for smaller and smaller divisions of the time interval, the estimate converges to the exact change in position over the full time interval. Since this process is exactly the same as the one described in the previous section for calculating the integral of a derivative, it means that, if $v(t)$ is the instantaneous velocity at time $t$, 
 \[
-f(t_1) - f(t_0) = \int_{t_0}^{t_1} v(t)\,dt
+p(t_1) - f(t_0) = \int_{t_0}^{t_1} v(t)\,dt.
 \]
 
 \end{document}
